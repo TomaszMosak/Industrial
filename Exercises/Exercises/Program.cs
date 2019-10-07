@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercises
 {
-    class Program
+    class Program1 //WEEK2
     {
         public enum weekday { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } //exercise 1 list
         public enum workday { Monday, Tuesday, Wednesday, Thursday, Friday } //exercise 1 list
@@ -242,11 +242,11 @@ namespace Exercises
 
         static void Main(string[] args)
         {
-            //----------------------------------------------------------------------------------------------
+            //---------------------------------------------------------------------------------------------- WEEK 2
 
             //Exercise 1
 
-            //Program week = new Program();
+            //Program1 week = new Program1();
             //Console.WriteLine(week.nextday(weekday.Monday));
             //Console.WriteLine(week.nextday(weekday.Friday));
             //Console.WriteLine(week.whatday("Monday"));
@@ -255,14 +255,14 @@ namespace Exercises
 
             //Exercise 2
 
-            //Program add = new Program();
+            //Program1 add = new Program1();
             //Console.WriteLine(add.calcsum(5));
 
             //End Exercise 2
 
             //Exercise 3
 
-            //Program arraysum = new Program();
+            //Program1 arraysum = new Program1();
             //int[] array = new int[] { 1, 2, 3, 4, 5 };
             //Console.WriteLine(arraysum.arraysum1(array));
             //arraysum.set0(array);
@@ -276,7 +276,7 @@ namespace Exercises
 
             //Exercise 4
 
-            //Program reader = new Program();
+            //Program1 reader = new Program1();
             //reader.readingnum();
             //Console.WriteLine(reader.shortvalue);
             //Console.WriteLine(reader.intvalue);
@@ -286,7 +286,7 @@ namespace Exercises
 
             //Exercise 5
 
-            //Program complexfun = new Program();
+            //Program1 complexfun = new Program1();
             //complexfun.complex();
 
             //End Exercise 5
@@ -345,8 +345,87 @@ namespace Exercises
 
             //END Exercise 7
 
-            //----------------------------------------------------------------------------------------------
+            //---------------------------------------------------------------------------------------------- WEEK 2
 
         }
+    }
+
+    class Program2 //WEEK 3
+    {
+        class BankAccount
+        {
+            protected static ulong latestAccNo = 1000;
+            protected ulong AccNo;
+            protected decimal balance;
+            protected string name;
+
+
+            public BankAccount(String Name)
+            {
+                latestAccNo++;
+                this.AccNo = latestAccNo;
+                this.name = Name;
+                this.balance = 0M;
+            }
+
+            public BankAccount(ulong Account, String Name)
+            {
+                this.AccNo = Account;
+                this.name = Name;
+                this.balance = 0M;
+            }
+
+            public void Deposit (decimal x)
+            {
+                this.balance += x;
+            }
+
+            public virtual void Withdrawl (decimal x)
+            {
+                if (this.balance >= x)
+                {
+                    this.balance -= x;
+                }
+                //else
+                //{
+                //    throw new Exception();
+                //}
+            }
+
+            public decimal GetBalance()
+            {
+                return this.balance;
+            }
+
+            public void ShowBalance()
+            {
+                Console.WriteLine("Your balance is: ", this.balance.ToString());
+            }
+
+            public virtual void ShowAccount()
+            {
+                Console.WriteLine("Account Number: {0}/tAccount Name: {1}/tCurrent Balance: {2}/t", this.AccNo, this.name, this.balance.ToString());
+            }
+
+            public void RunTrans()
+            {
+                this.ShowAccount();
+                this.ShowBalance();
+                this.Deposit(600);
+                Console.WriteLine("Deposited: ", 600);
+                this.ShowBalance();
+                this.Withdrawl(300);
+                Console.WriteLine("Withdrew: ", 300);
+                this.ShowBalance();
+                this.ShowAccount();
+            }
+
+            static void Main(string[] args)
+            {
+                BankAccount first = new BankAccount("Tomasz");
+                first.RunTrans();
+            }
+        }
+       
     }
 }
