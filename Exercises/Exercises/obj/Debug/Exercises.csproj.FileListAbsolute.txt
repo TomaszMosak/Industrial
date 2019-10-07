@@ -1,0 +1,6 @@
+H:\Industrial-master\Industrial\Exercises\Exercises\bin\Debug\Exercises.exe.config
+H:\Industrial-master\Industrial\Exercises\Exercises\bin\Debug\Exercises.exe
+H:\Industrial-master\Industrial\Exercises\Exercises\bin\Debug\Exercises.pdb
+H:\Industrial-master\Industrial\Exercises\Exercises\obj\Debug\Exercises.csprojResolveAssemblyReference.cache
+H:\Industrial-master\Industrial\Exercises\Exercises\obj\Debug\Exercises.exe
+H:\Industrial-master\Industrial\Exercises\Exercises\obj\Debug\Exercises.pdb
