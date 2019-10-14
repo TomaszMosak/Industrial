@@ -169,111 +169,139 @@ namespace Exercises {
             return;
         }
 
+        abstract class Shape {
 
-        abstract class Shape //Shapes Week 3
-            {
-                public abstract double getArea { get; }
+            public abstract override string ToString();
+         
+        }
+
+        class Rectangle : Shape {
+            public virtual double Width { get; set; }
+            public virtual double Height { get; set; }
+
+            public Rectangle(double Height, double Width) {
+                this.Height = Height;
+                this.Width = Width;
+            }
+           public double Area(double Height, double Width) {
+                return Height * Width;
             }
 
-            class Square : Rectangle {
-                public override int Width { get { return Height; } set { Height = value; } }
-               
-               public override double getArea {
-                    get {
-                        return Width * Width;
-                    }
-                }
-           }
+            public override string ToString() {
+                return string.Format("This is a Rectangle Class:\n Height: {0}\n Width: {1}\n Area: {2}", Height, Width, Area(Height, Width));
+            }
+        }
 
-            class Rectangle : Shape {
-                public virtual int Width { get; set; }
-                public virtual int Height { get; set; }
+        class Square : Rectangle {
+            public override double Width {
+                get { return Height; }
+                set { Height = value; } }
 
-                public override double getArea {
-                    get {
-                        return Height * Width;
-                    }
-                }
+            public Square(int Width) : base(Width, Width) {
+                this.Width = Width;
+                this.Height = Width;
+
             }
 
-            class Circle : Shape {
-                public virtual int radius { get; set; }
-
-                public override double getArea {
-                    get {
-                        return Math.PI * radius * radius;
-                    }
-                }
+            public double Area(double Width) {
+                return Math.Pow(Width, 2);
             }
+
+            public override string ToString() {
+                return string.Format("This is a Square Class:\n Width: {0}\n Area: {1}", Width, Area(Width));
+            }
+
+        }
+
+        class Circle : Shape {
+            private double radius;
+
+            public double Radius {
+                get { return radius; }
+                set { radius = value; }
+            }
+
+            public Circle(double Radius) {
+                this.Radius = Radius;
+            }
+
+            public double Area (double Radius) {
+                return Math.PI * Math.Pow(Radius, 2);
+            }
+
+            public override string ToString() {
+                return string.Format("This is a Circle Class:\n Radius: {0}\n Area: {1}", Radius, Area(Radius));
+            }
+        }
+     
+    
          
         
 
         static void Main(string[] args) {
-            //----------------------------------------------------------------------------  WEEK 2  ----------------------------------
-            //Exercise 1
+    //----------------------------------------------------------------------------  WEEK 2  ----------------------------------
+    //Exercise 1
 
-            //Program week = new Program();
-            //Console.WriteLine(week.nextday(weekday.Monday));
-            //Console.WriteLine(week.nextday(weekday.Friday));
-            //Console.WriteLine(week.whatday("Monday"));
+    //Program week = new Program();
+    //Console.WriteLine(week.nextday(weekday.Monday));
+    //Console.WriteLine(week.nextday(weekday.Friday));
+    //Console.WriteLine(week.whatday("Monday"));
 
-            //End Exercise 1
+    //End Exercise 1
 
-            //Exercise 2
+    //Exercise 2
 
-            //Program add = new Program();
-            //Console.WriteLine(add.calcsum(5));
+    //Program add = new Program();
+    //Console.WriteLine(add.calcsum(5));
 
-            //End Exercise 2
+    //End Exercise 2
 
-            //Exercise 3
+    //Exercise 3
 
-            //Program arraysum = new Program();
-            //int[] array = new int[] { 1, 2, 3, 4, 5 };
-            //Console.WriteLine(arraysum.arraysum1(array));
-            //arraysum.set0(array);
-            //foreach (var item in array)
-            //{
-            //    Console.WriteLine(item.ToString());
-            //}
-
-
-            //End Exercise 3
-
-            //Exercise 4
-
-            //Program reader = new Program();
-            //reader.readingnum();
-            //Console.WriteLine(reader.shortvalue);
-            //Console.WriteLine(reader.intvalue);
-            //Console.WriteLine(reader.longvalue);
-
-            //End Exercise 4
-
-            //Exercise 5
-
-            //Program complexfun = new Program();
-            //complexfun.complex();
-
-            //End Exercise 5
+    //Program arraysum = new Program();
+    //int[] array = new int[] { 1, 2, 3, 4, 5 };
+    //Console.WriteLine(arraysum.arraysum1(array));
+    //arraysum.set0(array);
+    //foreach (var item in array)
+    //{
+    //    Console.WriteLine(item.ToString());
+    //}
 
 
-            //----------------------------------------------------------------------------  WEEK 3  ----------------------------------
+    //End Exercise 3
 
-            //Exercise 1
+    //Exercise 4
 
-            Circle circle = new Circle();
-            circle.radius = 2;
-            Console.WriteLine(circle.getArea);
+    //Program reader = new Program();
+    //reader.readingnum();
+    //Console.WriteLine(reader.shortvalue);
+    //Console.WriteLine(reader.intvalue);
+    //Console.WriteLine(reader.longvalue);
 
-            Rectangle rect = new Rectangle();
-            rect.Height = 3;
-            rect.Width = 2;
-            Console.WriteLine(rect.getArea);
+    //End Exercise 4
 
-            Square sqr = new Square();
-            sqr.Width = 2;
-            Console.WriteLine(sqr.getArea);
+    //Exercise 5
+
+    //Program complexfun = new Program();
+    //complexfun.complex();
+
+    //End Exercise 5
+
+
+    //----------------------------------------------------------------------------  WEEK 3  ----------------------------------
+
+    //Exercise 1
+
+    Shape[] arrayofshapes = new Shape[3];
+            arrayofshapes[0] = new Rectangle(30,10);
+            arrayofshapes[1] = new Square(20);
+            arrayofshapes[2] = new Circle(15.2);
+
+            foreach (var item in arrayofshapes) {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadKey();
+
 
             //End Exercise 1
 
