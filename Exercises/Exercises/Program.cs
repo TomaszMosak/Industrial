@@ -239,71 +239,85 @@ namespace Exercises {
         
 
         static void Main(string[] args) {
-    //----------------------------------------------------------------------------  WEEK 2  ----------------------------------
-    //Exercise 1
+            //----------------------------------------------------------------------------  WEEK 2  ----------------------------------
+            //Exercise 1
 
-    //Program week = new Program();
-    //Console.WriteLine(week.nextday(weekday.Monday));
-    //Console.WriteLine(week.nextday(weekday.Friday));
-    //Console.WriteLine(week.whatday("Monday"));
-
-    //End Exercise 1
-
-    //Exercise 2
-
-    //Program add = new Program();
-    //Console.WriteLine(add.calcsum(5));
-
-    //End Exercise 2
-
-    //Exercise 3
-
-    //Program arraysum = new Program();
-    //int[] array = new int[] { 1, 2, 3, 4, 5 };
-    //Console.WriteLine(arraysum.arraysum1(array));
-    //arraysum.set0(array);
-    //foreach (var item in array)
-    //{
-    //    Console.WriteLine(item.ToString());
-    //}
-
-
-    //End Exercise 3
-
-    //Exercise 4
-
-    //Program reader = new Program();
-    //reader.readingnum();
-    //Console.WriteLine(reader.shortvalue);
-    //Console.WriteLine(reader.intvalue);
-    //Console.WriteLine(reader.longvalue);
-
-    //End Exercise 4
-
-    //Exercise 5
-
-    //Program complexfun = new Program();
-    //complexfun.complex();
-
-    //End Exercise 5
-
-
-    //----------------------------------------------------------------------------  WEEK 3  ----------------------------------
-
-    //Exercise 1
-
-    Shape[] arrayofshapes = new Shape[3];
-            arrayofshapes[0] = new Rectangle(30,10);
-            arrayofshapes[1] = new Square(20);
-            arrayofshapes[2] = new Circle(15.2);
-
-            foreach (var item in arrayofshapes) {
-                Console.WriteLine(item.ToString());
-            }
-            Console.ReadKey();
-
+            //Program week = new Program();
+            //Console.WriteLine(week.nextday(weekday.Monday));
+            //Console.WriteLine(week.nextday(weekday.Friday));
+            //Console.WriteLine(week.whatday("Monday"));
 
             //End Exercise 1
+
+            //Exercise 2
+
+            //Program add = new Program();
+            //Console.WriteLine(add.calcsum(5));
+
+            //End Exercise 2
+
+            //Exercise 3
+
+            //Program arraysum = new Program();
+            //int[] array = new int[] { 1, 2, 3, 4, 5 };
+            //Console.WriteLine(arraysum.arraysum1(array));
+            //arraysum.set0(array);
+            //foreach (var item in array)
+            //{
+            //    Console.WriteLine(item.ToString());
+            //}
+
+
+            //End Exercise 3
+
+            //Exercise 4
+
+            //Program reader = new Program();
+            //reader.readingnum();
+            //Console.WriteLine(reader.shortvalue);
+            //Console.WriteLine(reader.intvalue);
+            //Console.WriteLine(reader.longvalue);
+
+            //End Exercise 4
+
+            //Exercise 5
+
+            //Program complexfun = new Program();
+            //complexfun.complex();
+
+            //End Exercise 5
+
+
+            //----------------------------------------------------------------------------  WEEK 3  ----------------------------------
+
+            //Exercise 1
+
+            //Shape[] arrayofshapes = new Shape[3];
+            //arrayofshapes[0] = new Rectangle(30, 10);
+            //arrayofshapes[1] = new Square(20);
+            //arrayofshapes[2] = new Circle(15.2);
+
+            //foreach (var item in arrayofshapes) {
+            //    Console.WriteLine(item.ToString());
+            //}
+            //Console.ReadKey();
+
+            //End Exercise 1
+
+            //BST
+
+            BST<int> binary = new BST<int>();
+            binary.Insert(12);
+            binary.Insert(5);
+            binary.Insert(2);
+            binary.Insert(7);
+            binary.Insert(15);
+            binary.Insert(27);
+
+            binary.Insert(4, binary.root);
+            System.Console.WriteLine(binary.FindByValue(7, binary.root).Value);
+
+            //END BST
 
         }
     }
