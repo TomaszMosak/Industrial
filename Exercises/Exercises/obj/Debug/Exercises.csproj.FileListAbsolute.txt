@@ -10,3 +10,9 @@ C:\Users\tpm4\Source\Repos\Industrial3\Exercises\Exercises\obj\Debug\Exercises.p
 C:\Users\tpm4\Source\Repos\Industrial3\Exercises\Exercises\bin\Debug\Exercises.exe
 C:\Users\tpm4\Source\Repos\Industrial3\Exercises\Exercises\bin\Debug\Exercises.pdb
 C:\Users\tpm4\Source\Repos\Industrial3\Exercises\Exercises\obj\Debug\Exercises.csprojResolveAssemblyReference.cache
+H:\Exercises\Exercises\bin\Debug\Exercises.exe.config
+H:\Exercises\Exercises\obj\Debug\Exercises.exe
+H:\Exercises\Exercises\obj\Debug\Exercises.pdb
+H:\Exercises\Exercises\bin\Debug\Exercises.exe
+H:\Exercises\Exercises\bin\Debug\Exercises.pdb
+H:\Exercises\Exercises\obj\Debug\Exercises.csprojResolveAssemblyReference.cache

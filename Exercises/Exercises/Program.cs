@@ -307,15 +307,30 @@ namespace Exercises {
             //BST
 
             BST<int> binary = new BST<int>();
-            binary.Insert(12);
-            binary.Insert(5);
-            binary.Insert(2);
-            binary.Insert(7);
-            binary.Insert(15);
-            binary.Insert(27);
+            binary.Add(12);
+            binary.Add(5);
+            binary.Add(2);
+            binary.Add(7);
+            binary.Add(15);
+            binary.Add(27);
 
-            binary.Insert(4, binary.root);
-            System.Console.WriteLine(binary.FindByValue(7, binary.root).Value);
+            
+            Console.WriteLine("Number of Nodes: {0}",binary.Count);
+
+            binary.inorderTraversal(binary.Root);
+
+            Console.WriteLine("Max value in Tree: {0}", binary.MaxValue);
+            Console.WriteLine("Min value in Tree: {0}", binary.MinValue);
+
+            Console.WriteLine("Does the tree cointain 5?: {0}", binary.Contains(5));
+            Console.WriteLine("Does the tree cointain 9?: {0}", binary.Contains(9));
+
+            binary.Clear();
+
+            binary.Add(69);
+            binary.inorderTraversal(binary.Root);
+            Console.WriteLine("Number of Nodes: {0}", binary.Count);
+
 
             //END BST
 

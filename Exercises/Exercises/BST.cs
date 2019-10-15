@@ -6,103 +6,200 @@ using System.Threading.Tasks;
 
 namespace Exercises {
     class BST<Jack> where Jack : IComparable {
-        //int
-        //double
-        //float
-        //DateTime
-        //string
-        //char
-        //enum
+        #region Properties
+        public Node<Jack> Root { get; set; }
+        private int NoNodes { get; set; }
+        public bool isEmpty { get { return Root == null; } }
+        public Jack MaxValue {
+            get {
+                if (isEmpty) throw new Exception("The tree is empty yo");
+                Node<Jack> TempNode = Root;
+                while (TempNode.Left != null)
+                    TempNode = TempNode.Right;
+                return TempNode.value;
 
-        public Node<Jack> root { get; set; }
-
-
-        public void Insert(Jack value, Node<Jack> node) {
-            if (value.CompareTo(node.Value) > 0) {
-                if (node.rightnode == null) {
-                    node.rightnode = new Node<Jack>(value);
-                    return;
-                }
-                Insert(value, node.rightnode);
-                Console.WriteLine("Insert Right");
             }
-            if (value.CompareTo(node.Value) < 0) {
-                if (node.leftnode == null) {
-                    node.leftnode = new Node<Jack>(value);
-                    return;
-                }
-                Insert(value, node.leftnode);
-                Console.WriteLine("Insert Left");
+        }
+        public Jack MinValue {
+            get {
+                if (isEmpty) throw new Exception("The tree is empty yo");
+                Node<Jack> TempNode = Root;
+                while (TempNode.Left != null)
+                    TempNode = TempNode.Left;
+                return TempNode.value;
+
+            }
+        }
+        #endregion
+        #region Constructors
+        public BST() {
+            NoNodes = 0;
+        }
+        public BST(Node<Jack> Root) {
+            this.Root = Root;
+            NoNodes = 0;
+        }
+        #endregion
+        #region Public Functions
+        /// <summary>
+        /// Adds node as root or calls insert function
+        /// </summary>
+        /// <param name="item">New item to be added</param>
+        public void Add(Jack item) {
+            if (Root == null) {
+                Root = new Node<Jack>(item);
+                NoNodes++;
+                Console.WriteLine("Adding new Node as Root: {0}", item);
+            } else {
+                Insert(item);
+                NoNodes++;
             }
         }
 
-        public void Insert(Jack value) {
-            if (root == null) {
-                root = new Node<Jack>(value);
-            }
+        /// <summary>
+        /// Doesn't delete all nodes. Bad for memory
+        /// </summary>
+        public void Clear() {
+            Root = null;
+            NoNodes = 0;
+        }
 
-            Node<Jack> current = root;
-           
-            while (root != null) {
-                if (value.CompareTo(current.Value) > 0) {
-                    if (current.rightnode != null) {
-                        current = current.rightnode;
-                        Console.WriteLine("Value: {0} - Insert Right");
-                        continue;
-                    }
-                    current = new Node<Jack>(value);
-                } else if (value.CompareTo(current.Value) < 0) {
-                    if (current.leftnode != null) {
-                        current = current.leftnode;
-                        Console.WriteLine("Value: {0} - Insert Left", current.Value);
-                        continue;
-                    }
-                    current = new Node<Jack>(value);
+        /// <summary>
+        /// Checks if the tree contains somethin
+        /// </summary>
+        /// <param name="item">The object that its searching for</param>
+        /// <returns>Boolean - True/False</returns>
+        public bool Contains(Jack item) {
+            if (isEmpty) {
+                return false;
+            }
+            Node<Jack> TempNode = Root;
+            while (TempNode != null) {
+                int ComparedValue = TempNode.value.CompareTo(item);
+                if (ComparedValue == 0) {
+                    return true;
+                } else if (ComparedValue < 0) {
+                    TempNode = TempNode.Left;
                 } else {
-                    return;
+                    TempNode = TempNode.Right;
+                }
+            }
+            return false;
+        }
+
+        //------------------------------------------NEEDS REWORKED
+        public bool Remove(Jack item) {
+            Node<Jack> Item = Find(item);
+            if (Item == null) {
+                return false;
+            }
+            List<Jack> Values = new List<Jack>();
+            foreach (Node<Jack> TempNode in Traversal(Item.Left)) {
+                Values.Add(TempNode.value);
+            }
+            foreach (Node<Jack> TempNode in Traversal(Item.Right)) {
+                Values.Add(TempNode.value);
+            }
+            if (Item.Parent.Left == Item) {
+                Item.Parent.Left = null;
+            } else {
+                Item.Parent.Right = null;
+            }
+            Item.Parent = null;
+            foreach (Jack value in Values) {
+                this.Add(value);
+            }
+            Console.WriteLine("Removing the value: {0}", item);
+            return true;
+        }
+        //------------------------------------------NEEDS REWORKED
+
+        /// <summary>
+        /// Gives the number of nodes in tree
+        /// </summary>
+        public int Count {
+            get { return NoNodes; }
+        }
+
+        /// <summary>
+        /// inorder Traversal over the BST
+        /// </summary>
+        /// <param name="root">This is the root of the tree</param>
+        public void inorderTraversal(Node<Jack> root) {
+            if (root != null) {
+                inorderTraversal(root.Right);
+                Console.WriteLine(root.value);
+                inorderTraversal(root.Left);
+            }
+        }
+        #endregion
+        #region Private Functions
+        /// <summary>
+        /// Inserts value into the tree
+        /// </summary>
+        /// <param name="item">Item to be inserted</param>
+        private void Insert(Jack item) {
+            Node<Jack> TempNode = Root;
+            bool Found = false;
+            while (!Found) {
+                int ComparedValue = TempNode.value.CompareTo(item);
+                if (ComparedValue < 0) {
+                    if (TempNode.Left == null) {
+                        TempNode.Left = new Node<Jack>(item, TempNode);
+                        Console.WriteLine("Adding new Node Left: {0}", item);
+                        return;
+                    } else {
+                        TempNode = TempNode.Left;
+                    }
+                } else if (ComparedValue > 0) {
+                    if (TempNode.Right == null) {
+                        TempNode.Right = new Node<Jack>(item, TempNode);
+                        Console.WriteLine("Adding new Node Right: {0}", item);
+                        return;
+                    } else {
+                        TempNode = TempNode.Right; 
+                    }
+
+                } else {
+                    TempNode = TempNode.Right;
                 }
             }
         }
 
-        public void InsertFromArray(Jack[] array) {
-            foreach (Jack j in array) {
-                this.Insert(j);
-            }
+        /// <summary>
+        /// Finds the value in the tree
+        /// </summary>
+        /// <param name="item">Item to find</param>
+        /// <returns>The found node if its in the tree. Else false</returns>
+        private Node<Jack> Find(Jack item) {
+            foreach (Node<Jack> Item in Traversal(Root))
+                if (Item.value.Equals(item)) {
+                    Console.WriteLine("Found the item {0} in Tree", item);
+                    return Item;
+                }
+            return null;
         }
 
-        public int GetLevel(Node<Jack> node, int current = 1) {
-            int leftlevel = 0;
-            int rightlevel = 0;
-
-            if (node.rightnode != null) {
-                rightlevel = GetLevel(node.rightnode, current + 1);
+        /// <summary>
+        /// Traversal via Enumerable
+        /// </summary>
+        /// <param name="Node">All nodes in tree</param>
+        /// <returns>The nodes inorder</returns>
+        private IEnumerable<Node<Jack>> Traversal(Node<Jack> Node) {
+            if (Node.Left != null) {
+                foreach (Node<Jack> LeftNode in Traversal(Node.Left)) {
+                    yield return LeftNode;
+                }
             }
 
-            if (node.leftnode != null) {
-                leftlevel = GetLevel(node.leftnode, current + 1);
-            }
-
-            if (leftlevel == 0 && rightlevel == 0) return current;
-            else {
-                return rightlevel > leftlevel ? rightlevel : leftlevel;
+            yield return Node;
+            if (Node.Right != null) {
+                foreach (Node<Jack> RightNode in Traversal(Node.Right)) {
+                    yield return RightNode;
+                }
             }
         }
-
-        public Node<Jack> FindByValue(Jack value, Node<Jack> node) {
-            if (node == null) return null;
-
-            if (value.Equals(node.Value)) {
-                return node;
-            }
-
-            if (value.CompareTo(node.Value) > 0) {
-                return FindByValue(value, node.rightnode);
-            } else if (value.CompareTo(node.Value) < 0) {
-                return FindByValue(value, node.leftnode);
-            } else return null;
-        }
-
-    
-}
+        #endregion
+    }
 }
 
